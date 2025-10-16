@@ -1,0 +1,221 @@
+/* 基础动画类 */
+.scroll-animate-init {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animate-init.animate-in {
+  opacity: 1;
+}
+
+/* 从上往下 - 增加范围 */
+.fade-down {
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-down.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 从下往上 - 增加范围 */
+.fade-up {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-up.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 从左往右 - 增加范围 */
+.slide-right {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-right.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 从右往左 - 增加范围 */
+.slide-left {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-left.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 缩放进入 - 增加范围 */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 0.8s ease-out;
+}
+
+.zoom-in.animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 缩放退出 */
+.zoom-out {
+  opacity: 0;
+  transform: scale(1.3);
+  transition: all 0.8s ease-out;
+}
+
+.zoom-out.animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 翻转效果 */
+.flip-x {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(90deg);
+  transition: all 0.8s ease-out;
+}
+
+.flip-x.animate-in {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0);
+}
+
+.flip-y {
+  opacity: 0;
+  transform: perspective(1000px) rotateY(90deg);
+  transition: all 0.8s ease-out;
+}
+
+.flip-y.animate-in {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0);
+}
+
+/* 弹跳效果 */
+.bounce-in {
+  opacity: 0;
+  transform: scale(0.3) translateY(100px);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bounce-in.animate-in {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* 旋转进入 */
+.rotate-in {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.5);
+  transition: all 0.8s ease-out;
+}
+
+.rotate-in.animate-in {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+/* 模糊进入 */
+.blur-in {
+  opacity: 0;
+  filter: blur(20px);
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.blur-in.animate-in {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* 摆动进入 */
+.swing-in {
+  opacity: 0;
+  transform: rotate(-10deg) translateX(50px);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.swing-in.animate-in {
+  opacity: 1;
+  transform: rotate(0) translateX(0);
+}
+
+/* 延迟类 */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+.delay-600 { transition-delay: 0.6s; }
+.delay-700 { transition-delay: 0.7s; }
+.delay-800 { transition-delay: 0.8s; }
+
+/* 持续时间类 */
+.duration-300 { transition-duration: 0.3s; }
+.duration-500 { transition-duration: 0.5s; }
+.duration-700 { transition-duration: 0.7s; }
+.duration-1000 { transition-duration: 1s; }
+.duration-1500 { transition-duration: 1.5s; }
+
+/* 组合动画 - 对角线 */
+.slide-down-right {
+  opacity: 0;
+  transform: translate(-50px, -50px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-down-right.animate-in {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.slide-up-left {
+  opacity: 0;
+  transform: translate(50px, 50px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-up-left.animate-in {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* 特殊效果 - 打字机 */
+.typewriter {
+  opacity: 1;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  transition: all 0.8s ease-out;
+}
+
+.typewriter.animate-in {
+  width: 100%;
+  border-right: 2px solid transparent;
+}
+
+/* 特殊效果 - 淡入拉伸 */
+.stretch-in {
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.stretch-in.animate-in {
+  opacity: 1;
+  transform: scaleX(1);
+}

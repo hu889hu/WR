@@ -1,0 +1,724 @@
+.white
+  color: #FFFFFF
+
+.black
+  color: #0C1239
+
+
+.user-t
+  background: #0A0E21
+  padding: 12px 0
+  font-size: 16px
+
+
+.login-off, .login-no
+  padding: 0 12px
+
+.login-off
+  font-size: 14px
+
+.a-aim
+  transition: all 0.3s ease 0s
+
+
+
+.menu-flex
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  justify-content: center
+  padding: 12px 0
+  @media screen and (max-width: 1200px)
+    .menu-btn
+      display: none
+.logo
+  height: 46px
+  display: flex
+  align-items: center
+  img
+    max-width: 100%
+    height: 100%
+
+.menu-nav
+  margin-left: 40px
+  ul
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    padding: 0 0
+
+    li
+      padding: 0 22px 
+      a
+        font-size: 16px
+        font-weight: 600
+        display: block
+        padding: 15px 0
+        line-height: 1
+        color: #fff
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562)
+        transition: all 0.3s ease-in-out 0s
+        &::before
+          content: ""
+          position: absolute
+          bottom: 2px
+          left: 50%
+          transform: translateX(-50%)
+          transition: all 0.3s ease-in-out 0s
+          height: 2px
+          width: 0
+          background-color: rgba(255, 255, 255, 1)
+        &:hover
+          &::before
+            width: 100%
+
+
+.menu-btn
+  line-height: 1
+  background-color: #0e63ff
+  color: #FFF
+  font-weight: 600
+  padding: 20px 31px
+  text-align: center
+  text-transform: none
+  touch-action: manipulation
+  transition: all 0.3s ease 0s
+  vertical-align: middle
+  white-space: nowrap
+  border-radius: 4px
+  position: relative
+  overflow: hidden
+  z-index: 1
+  margin-left: 10px
+ 
+  &::before
+    content: ""
+    position: absolute
+    -webkit-transition-duration: 800ms
+    transition-duration: 800ms
+    width: 200%
+    height: 200%
+    top: 110%
+    left: 50%
+    background: black
+    -webkit-transform: translateX(-50%)
+    transform: translateX(-50%)
+    border-radius: 50%
+    z-index: -1
+
+  &:hover:before
+    top: -40%
+
+
+.none
+  display: none
+
+.main-slider1
+  position: relative
+  .owl-nav
+    color: #FFF
+    opacity: 0
+    transition: all .3s ease
+  .owl
+    color: #999
+  &:hover
+    .owl-nav
+      opacity: 1
+.owl-nav
+  position: absolute
+  z-index: 2
+  top: 50%
+  right: 0
+  left: 0
+  width: 100%
+  transform: translateY(calc(-50% - 24px ))
+  .owl
+    outline: none
+    display: flex
+    align-items: center
+    justify-content: center
+    &:hover
+      background-color: #0e63ff
+      border-radius: 50%
+      color: #FFF
+.owl-prev
+  position: absolute
+  left: 30px
+  width: 48px
+  height: 48px
+  border-radius: 50px
+  line-height: 48px
+  text-align: center
+  display: inline-block
+  font-size: 20px
+  color: #ffffff
+  background-color: transparent
+  transition: all 250ms ease
+  -moz-transition: all 250ms ease
+  -webkit-transition: all 250ms ease
+  -ms-transition: all 250ms ease
+  -o-transition: all 250ms ease
+  font-family: 'Font Awesome 5 Pro'
+  border: 1px solid transparent
+
+.owl-next
+  position: absolute
+  right: 30px
+  width: 48px
+  height: 48px
+  border-radius: 50px
+  line-height: 48px
+  text-align: center
+  display: inline-block
+  font-size: 20px
+  color: #ffffff
+  background-color: transparent
+  transition: all 250ms ease
+  -moz-transition: all 250ms ease
+  -webkit-transition: all 250ms ease
+  -ms-transition: all 250ms ease
+  -o-transition: all 250ms ease
+  font-family: 'Font Awesome 5 Pro'
+  border: 1px solid transparent
+
+.item-slider
+  min-height: 376px
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+  display: flex
+  align-items: center
+
+.slider1
+  background-image: url(@/assets/image/index/slider1-1.jpg)
+
+.slider2
+  background-image: url(@/assets/image/index/slider1-2.jpg)
+
+.slider3
+  background-image: url(@/assets/image/index/slider1-3.jpg)
+
+.item-slider .container
+  width: 100%
+  padding-right: var(--bs-gutter-x, 0.75rem)
+  padding-left: var(--bs-gutter-x, 0.75rem)
+  margin-right: auto
+  margin-left: auto
+  // max-width: 1320px
+  color: #016ba9
+  @media screen and (min-width: 1320px)
+    max-width: 1320px
+  @media screen and (min-width: 1200px)
+    max-width: 1200px !important
+  
+  h1
+    margin: 30px 0 11px
+    font-size: 40px
+
+  h2
+    font-size: 24px
+    line-height: 30px
+
+  .more
+    margin: 20px 0 40px
+    width: 134px
+
+  h1, h2, .more
+    opacity: 0
+    transform: scale(1, 0.2)
+    transition: all 900ms ease
+
+.swiper-slide-active
+  color: #016ba9
+  font-weight: bold
+  h1, h2, .more
+    opacity: 1 !important
+    transform: scale(1, 1) !important
+  h1
+    transition-delay: 600ms !important
+  h2
+    transition-delay: 900ms !important
+  .more
+    transition-delay: 1200ms !important
+@keyframes fadeInOpcity
+  0% 
+    opacity: 0
+  50% 
+    opacity: 1
+  100% 
+    opacity: 0
+  
+.team
+  width: 100%
+  min-height: 100dvh
+  margin: 0 auto
+  position: relative
+  color: #fff
+  &::before
+    content: ""
+    background-color: #060922
+    position: absolute
+    opacity: 0.5 !important
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 0
+  .home-opcity-bg
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+    z-index: 1
+    animation: fadeInOpcity 3000ms ease-in-out infinite
+  .title h2
+    margin-bottom: 0
+    font-size: 25px
+    font-weight: 700
+    color: #020472
+    text-align: center
+.team-items
+  width: 1320px
+  max-width: 100%
+  padding: 70px 0 90px
+  margin: 0 auto
+  display: flex
+  align-items: center
+  justify-content: space-between
+  flex-wrap: wrap
+  height: 100dvh
+  z-index: 2
+.t-item
+  display: inline-block
+  padding: 0 12px
+  flex: 8
+  img
+    min-height: 300px
+    max-width: 100%
+    transition: all 0.3s
+  &>h4
+    position: relative
+    font-size: 1rem
+    font-weight: 600
+    font-style: italic
+    letter-spacing: 1px
+    text-align: left
+    text-transform: uppercase
+    display: block
+    width: max-content
+    margin-bottom: 0
+    padding-left: 2rem
+    padding-right: 2rem
+    color: #e4a216
+    z-index: 5
+    &::after
+      left: 0 !important
+      right: auto !important
+    &::before,&::after
+      content: ""
+      display: inline-block
+      position: absolute
+      width: 1.5rem
+      height: 2px
+      border-radius: 1rem
+      top: 50%
+      right: 0
+      left: auto
+      transform: translateY(-50%)
+      background-color: #d69714
+  h1
+    font-size: 50px
+    font-weight: 700
+  p
+    font-size: 1.35rem
+    font-weight: 400
+    margin-bottom: 2rem
+    padding-right: 20%
+  &:hover img
+    transform: scale(1.12)
+
+  h5:hover
+    color: #0e63ff
+.cta-links
+  display: flex
+  align-items: center
+  margin-top: 30px
+  gap: 20px
+  .btn-solid,.btn-outline
+    font-size: 18px
+    border: 2px solid #e4a216
+    background: #e4a216
+    border-radius: 28px
+    padding: 12px 36px
+    font-weight: 600
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562)
+    transition: all 0.3s ease-in-out
+    &:hover
+      background-color: #e4a21600
+  .btn-outline
+    background-color: #e4a21600
+    border: 2px solid #f077a0
+    color: #f077a0
+    padding-inline: 56px
+    text-shadow: none
+    &:hover
+      background-color: #f077a0
+      color: #FFF
+.dark-bg
+  flex: 4
+  background-color: #060922
+  color: #FFF
+  padding:32px 16px
+  .title
+    margin-bottom: 2rem
+    border-bottom: 2px solid #f077a0
+    padding-bottom: 0.75rem
+    text-transform: capitalize
+    font-size: 2rem
+    font-weight: 600
+    text-align: center
+    h2
+      color: #FFF
+  p
+    color: #f0f8ff
+    margin-bottom: 16px
+
+/* join-us */
+.join-us
+  position: relative
+  background: #0d214d
+  color: #FFF
+  padding: 5rem 0
+  @media screen and (max-width: 768px)
+    &::before
+      width: 100% !important
+  &::before
+    content: ""
+    background-color: #194c9e
+    position: absolute
+    left: 0
+    top: 0
+    width: 0%
+    height: 100%
+    transition: all 0.3s ease-in-out
+  &::after
+    content: ""
+    background-color: #194c9e
+    position: absolute
+    left: 0
+    z-index: 0
+    bottom: 0
+    width: 100%
+    height: 30%
+  .join-cont
+    z-index: 1
+    width: 1320px
+    max-width: 100%
+    padding: 0 20px
+    margin: 0 auto
+    h3
+      font-size: 64px
+      font-weight: 700
+      margin-bottom: 45px
+    .two
+      .item
+        h2
+          font-size: 55px !important
+          
+    .join-items
+      background-color: #040827
+      display: grid
+      grid-template-columns: repeat(4, 1fr)
+      flex-wrap: wrap
+      
+      overflow: hidden
+      border-radius: 0.5rem
+      .item
+        margin: 4rem 0
+        text-align: center
+        &:nth-child(1),&:nth-child(2),&:nth-child(3),&:nth-child(5),&:nth-child(6),&:nth-child(7)
+          border-right: 1px dashed rgba(255, 255, 255, 0.5)
+        h2
+          margin-bottom: 8px
+          color: #fda625
+          font-size: 45px
+          font-weight: 700
+        h4
+          padding: 10px 12px
+          font-size: 20px
+        
+
+
+/* vw-content */
+
+.vw-content
+  padding: 115px 0 70px
+  background-color: #fff
+.vw
+  margin: 0 auto
+  max-width: 1320px
+  
+  &>h1
+    font-size: 35px
+    color: rgb(8, 56, 160)
+    visibility: visible
+    animation-delay: 0.4s
+    font-weight: 700
+  .vw-items
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    margin-top: 3rem
+  .row-item
+    width: 50%
+    padding: 0 12px
+    h3
+      font-size: 20px
+      color: #0838a0
+      margin-bottom: 16px
+      font-weight: 700
+    p
+      font-size: 16px
+      line-height: 24px
+      color: #060922
+      font-weight: 600
+      
+    .cta-nav
+      cursor: pointer
+      margin-top: 1rem
+      font-size: 16px
+      color: #f077a0
+      font-weight: 600
+      display: flex
+      align-items: center
+      transition: all 0.3s ease-in-out
+      &:hover
+        .arrow-icon
+          margin-left: 10px  
+      .arrow-icon
+        margin-left: 5px
+        transition: all 0.3s ease-in-out
+        fill: #f077a0
+    &:hover
+      .item-box    
+        img
+          transform: scale(1.1)
+  .item-box
+    overflow: hidden
+    /* background-color: #E0E0E0; */
+    width: 100%
+    min-height: 320px
+    max-height: 400px
+    padding: 15px
+    margin-bottom: 30px
+    display: flex
+    flex-direction: column
+    position: relative
+    img
+      width: 100%
+      object-fit: cover
+      transition: all 0.5s ease-in-out 0s
+  .logo-sm
+    margin-bottom: 5px
+
+  .t-cont
+    flex: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    font-size: 16px
+    font-weight: bold
+    color: #61657E
+
+    h4
+      font-size: 18px
+      margin-bottom: 8px
+      line-height: 20px
+      color: #1c1c1c
+
+    p
+      width: 85%
+      line-height: 24px
+  .item-box a > img
+    width: 100%
+    vertical-align: middle
+
+  .logo-sm h4
+    font-size: 18px
+    padding-bottom: 30px
+    margin-bottom: 8px
+
+  .bfb
+    width: 50%
+
+.team2
+  overflow: hidden
+  background-color: #fff
+  color: #060922
+  &.btm
+    background-image: url(@/assets/image/index/bg2.jfif)
+    background-size: cover
+    background-position: center
+    background-attachment: fixed
+    text-align: center
+    color: #FFF
+    &::before
+      content: ""
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      height: 100%
+      width: 100%
+      background-color: #060922d6
+      opacity: 0.65
+      z-index: 0
+    h4
+      margin: 0 auto
+  .team-items
+    height: 100% !important
+    padding: 100px 0
+    .t-item
+
+      h1
+        font-size: 2rem
+        margin-bottom: 1rem
+      p
+        font-size: 1rem
+        margin-bottom: 14px !important
+        padding-right: 0 !important
+      .btn
+        display: inline-block
+        margin-top: 30px
+        font-size: 16px
+        border: 2px solid #fff
+        padding: 12px 36px
+        border-radius: 28px
+        font-weight: 600
+        transition: all 0.3s ease-in-out
+        &:hover
+          background-color: #f077a0
+          border: 2px solid #f077a0
+.swp-items
+  z-index: 1
+  background-color: #fff
+  .items
+    max-width: 1320px
+    margin: 0 auto
+    width: 100%
+    &>h4
+      position: relative
+      font-size: 1rem
+      font-weight: 600
+      font-style: italic
+      letter-spacing: 1px
+      text-align: left
+      text-transform: uppercase
+      display: block
+      width: max-content
+      margin-bottom: 0
+      padding-left: 2rem
+      padding-right: 2rem
+      color: #e4a216
+      z-index: 5
+      &::after
+        left: 0 !important
+        right: auto !important
+      &::before,&::after
+        content: ""
+        display: inline-block
+        position: absolute
+        width: 1.5rem
+        height: 2px
+        border-radius: 1rem
+        top: 50%
+        right: 0
+        left: auto
+        transform: translateY(-50%)
+        background-color: #d69714
+.mega-section
+  position: relative
+  padding: 5rem 0
+  background-color: #000531
+  .section-video-bg
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    .overlay-color
+      position: absolute
+      background-color: #060922
+      opacity: 0.65
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+    video
+      width: 100%
+      height: 100%
+      object-fit: cover
+  .mega-container
+    width: 1320px
+    margin: 0 auto
+    max-width: 100%
+    padding: 0 20px
+    h1
+      font-size: 2.5rem
+    p
+      margin: 10px 0px 10px 0
+    .btn-outline
+      border: 2px solid
+      color: #f077a0
+      background: transparent
+      border-color: #f077a0
+      verflow: hidden
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      text-decoration: none !important
+      text-align: center
+      text-transform: capitalize
+      letter-spacing: 1px
+      outline: none
+      padding: 0.75rem 2.25rem
+      font-weight: 800
+      box-shadow: 0px 3px 10px -5px rgba(6, 9, 34, 0.15)
+      transition: all 0.3s ease-in-out 0s
+      cursor: pointer
+      border-radius: 28px
+      &:hover
+        color: white
+        background: #f077a0
+
+
+@media screen and (max-width: 992px)
+  .menu-flex
+    padding-inline: 20px 0
+    justify-content: space-between
+    .menu-nav ul
+      display: none
+    .menu-nav .sid
+      display: block
+      margin-inline: 10px
+      // border: 2px solid #063232
+      padding:0 8px
+      border-radius: 50%
+      &.active
+        span
+          &:nth-child(2)
+            width: 20px !important
+      span
+        display: block
+        margin: 5px auto
+        width: 24px
+        height: 2px
+        background-color: #fff
+        transition: all .4s ease
+        &:nth-child(1)
+          margin-top: 12px
+        &:nth-child(3)
+          margin-bottom: 12px
