@@ -129,6 +129,46 @@ export const useWalletStore = defineStore('wallet', () => {
       }
     }
   }
+  const donate = async (params: any) => {
+    try {
+      const res: any = await $API(`/donate`, {
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: getAccessToken()
+        }
+      })
+      if (res.statusCode !== 200) {
+        res.statusCode === 400
+          ? null
+          : ElNotification({
+              title: `${t('捐赠失敗')}`,
+              showClose: false,
+              message: `${t(res.message)}`
+            })
+        return {
+          success: false,
+          message: `${t(res.message)}`
+        }
+      }
+      return {
+        success: true,
+        data: res.data
+      }
+    } catch (error: any) {
+      console.log(`donate error: `, error)
+      // ElNotification({
+      //   title: `${t('提款錯誤')}`,
+      //   showClose: false,
+      //   message: error.toString()
+      // })
+      return {
+        success: false,
+        message: error.toString()
+      }
+    }
+  }
   const withdraw = async (params: any) => {
     try {
       const res: any = await $API(`/withdraw`, {
@@ -297,6 +337,7 @@ export const useWalletStore = defineStore('wallet', () => {
     queryTransferRecord,
     withdraw,
     transfer,
+    donate,
     queryDepositRecords,
     deeplink,
     queryWalletLog

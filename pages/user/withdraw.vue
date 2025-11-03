@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { ref, watch } from 'vue'
 const { t } = useI18n()
 const router = useRouter()
 const playerStore = usePlayerStore()
 const siteStore = useSiteStore()
-const { withdraw, transfer } = useWalletStore()
+const { withdraw, transfer, donate } = useWalletStore()
 const withdrawAmount = ref(0)
 const tPwd = ref('')
 const withdrawFee = computed(() => withdrawFeeCount())
@@ -81,6 +82,60 @@ const goWithdraw = async () => {
       duration: 1000
     })
     withdrawAmount.value = 0
+    tPwd.value = ''
+    await playerStore.fetchInfo()
+  }
+}
+const goDonate = async () => {
+
+  // if (siteStore.siteData.transactionPasswordRequired) {
+  //   if (!tPwd.value) {
+  //     ElNotification({
+  //       title: `${t('請輸入交易密碼')}`,
+  //       type: 'error',
+  //       duration: 1000,
+  //       showClose: false
+  //     })
+  //     return
+  //   }
+  // }
+  if (!amountInfo.value.amount) {
+    ElNotification({
+      title: `${t('请输入捐赠金额')}`,
+      type: 'error',
+      duration: 1000,
+      showClose: false
+    })
+    return
+  }
+  if (amountInfo.value.amount > Number(mainBalance.value)) {
+    ElNotification({
+      title: `${t('餘額不足')}`,
+      type: 'error',
+      duration: 1000,
+      showClose: false
+    })
+    return
+  }
+  const donateRes = await donate(
+    siteStore.siteData.transactionPasswordRequired
+      ? {
+        amount: JSON.stringify(amountInfo.value.amount),
+        password: tPwd.value,
+        walletType: 13
+      }
+      : {
+        amount: JSON.stringify(amountInfo.value.amount),
+        walletType: 13
+      }
+  )
+  if (donateRes.success) {
+    ElNotification({
+      title: `${t('捐赠成功')}`,
+      type: 'success',
+      duration: 1000
+    })
+    amountInfo.value.amount = 0
     tPwd.value = ''
     await playerStore.fetchInfo()
   }
@@ -213,6 +268,14 @@ watch(
   },
   { deep: true }
 )
+
+const amountInfo = ref({
+  amount: ''
+})
+const tabActive = ref('1')
+const onActive = (item) => {
+  tabActive.value = item
+}
 </script>
 
 <template>
@@ -225,8 +288,16 @@ watch(
         HELLO:{{ playerStore.playerInfo.username }} $ {{ new Intl.NumberFormat('zh-TW').format(mainBalance) }}
       </h3>
       <hr style="border-top: 1px solid #d7d7d7;opacity: 1;margin-bottom: 50px;">
+      <div class="btns">
+        <div class="btn" :class="tabActive == '1' ? 'active' : ''" @click="onActive('1')">
+          财务申请
+        </div>
+        <div class="btn" :class="tabActive == '2' ? 'active' : ''" @click="onActive('2')">
+          爱心公益箱
+        </div>
+      </div>
       <div v-if="playerStore.playerInfo.bankInfo !== null" class="formSection">
-        <div class="formContent">
+        <div class="formContent" v-if="tabActive == '1'">
           <form action="" class="ul-contact-form">
             <!--  銀行  -->
             <div class="form-group">
@@ -308,6 +379,27 @@ watch(
             </button>
           </form>
         </div>
+        <div class="formContent" v-if="tabActive == '2'">
+          <form action="" class="ul-contact-form">
+            <!-- 金額 -->
+            <div class="form-group">
+              <div class="position-relative">
+                <label>請輸入您的捐赠金額</label>
+                <input type="number" v-model="amountInfo.amount" class="form-control">
+              </div>
+            </div>
+            <!-- <div class="form-group" style="padding-top: 10px;" v-if="siteStore.siteData.transactionPasswordRequired">
+              <div class="position-relative">
+                <label>交易密碼</label>
+                <input type="password" v-model="tPwd" v-trim-input name="new_password" autocomplete="off"
+                  class="form-control">
+              </div>
+            </div> -->
+            <button type="button" class="update_password" @click="goDonate">
+              {{ $lang('確認捐赠') }}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -334,6 +426,20 @@ watch(
   width: 1140px
   @media screen and (max-width: 768px)
     width: 100%
+  .btns
+    display: flex
+    gap: 10px
+    margin-bottom: 10px
+    .btn
+      min-width: 120px
+      text-align: center
+      padding: 8px 15px
+      border: 1px solid #007bff
+      color: #007bff
+      border-radius: 5px
+    .active
+      background-color: #007bff !important
+      color: #fff !important
   .smile
     font-size: 200px
     color: rgb(100, 166, 252)
