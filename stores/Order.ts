@@ -72,9 +72,9 @@ export const useOrderStore = defineStore('order', () => {
             title: `${t('下單失敗')}`,
             type: 'error',
             showClose: false,
-            message: `${t('請確認網路連線')}`
+            message: res.data.message
           })
-          message = `${t('請確認網路連線')}`
+          message = res.data.message
         }
         return {
           success: false,
