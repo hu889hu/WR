@@ -14,6 +14,10 @@ const referrerCodeCookiee = useCookie('referrerCode', {
   expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
 }) as any
 
+if (!isLogin() && router.currentRoute.value.name !== 'register' && router.currentRoute.value.name !== 'login') {
+  navigateTo('/login')
+}
+
 const checksetInterval = async () => {
   const tokenExsit = isLogin()
   if (tokenExsit) {

@@ -82,6 +82,7 @@ const openChatBox = () => {
 }
 
 await onMounted(async () => {
+  navigateTo('/user')
   console.log('register page')
   if (router.currentRoute.value.query.referrer) {
     referrerCodeCookiee.value = router.currentRoute.value.query.referrer

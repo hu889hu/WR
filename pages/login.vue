@@ -81,13 +81,13 @@ const openChatBox = () => {
             <p>我們不是只看趨勢，而是看見需求，<br>
               AI設備不只用於診斷，更能累積大量數據，<br>
               未來將成為預測疾病，提前介入抗癌的關鍵</p>
-            <div class="login-check">
+            <!-- <div class="login-check">
               <a @click="
                 () => {
                   navigateTo('/')
                 }
               "><label class="checkbox">返回首頁</label></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
