@@ -3,6 +3,9 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('trim-input', {
     beforeMount(el) {
       el.addEventListener('input', (event) => {
+        // 跳過組字中的輸入事件
+        if (event.isComposing) return
+
         const currentValue = event.target.value
         const trimmedValue = currentValue.replace(/\s+/g, '')
 
