@@ -73,7 +73,7 @@ const goTransfer = async () => {
 }
 const rate = ref(1)
 const conversionCalculation = () => {
-  toAmount.value = rate.value * amount.value
+  toAmount.value = Math.ceil(rate.value * amount.value)
 }
 const statusList = [
   {
@@ -109,7 +109,7 @@ const formatDate = (timestamp: string) => {
     <div class="inf-bg">
       <div class="ul-contact-form-container__title">
         <div>您當前可換購數量為 <span style="color: #a34405;"> {{ new Intl.NumberFormat('zh-TW').format(playerWalletBalance)
-            }}</span></div>
+        }}</span></div>
         <div>可將您持有的TWD轉換為USDT</div>
         <div>（系統匯率：{{ uRate }} TWD / 1 USDT）</div>
         <div>最低USDT數量為100</div>
