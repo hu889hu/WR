@@ -162,7 +162,7 @@ onMounted(async () => {
     console.log('window', window.innerWidth)
     window.addEventListener('scroll', handleScroll)
   }
-  await startConnectWebSocket()
+  // await startConnectWebSocket()
 })
 onBeforeUnmount(() => {
   reconnected.value = false
