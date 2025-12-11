@@ -6,6 +6,7 @@ const siteStore = useSiteStore()
 const PlayerStore = usePlayerStore()
 const orderStore = useOrderStore()
 const { queryKlines, queryRounds } = useGameStore()
+const { queryProduct, queryInventory, betProduct } = useOrderStore()
 const { getListenkey } = PlayerStore
 const router = useRouter()
 const route = useRoute()
@@ -22,8 +23,8 @@ const socket: any = ref(null)
 const socketConnected = ref(false)
 const isFirstGet = ref(false)
 const playerWallet = computed(() => {
-  if (PlayerStore.playerInfo.wallet) {
-    const wallet = PlayerStore.playerInfo.wallet.find((item) => item.type === 2)
+  if (PlayerStore.playerInfo?.wallet) {
+    const wallet = PlayerStore.playerInfo?.wallet.find((item) => item.type === 2)
     return wallet ? wallet.balance : 0
   } else {
     return 0
@@ -32,68 +33,76 @@ const playerWallet = computed(() => {
 const productList = ref([])
 const ordertList = ref([])
 const serverTime = ref({})
-const selectProduct = ref('')
 const typeLis = ref([])
 const typeitem = ref('')
 const selectProductOrder = ref({
-  playerId: '',
-  productId: typeLis.value._id,
-  type: '',
-  piece: '',
-  validation: ''
+  productId: '',
+  action: '',
+  piece: ''
 })
-const clearBetData = () => {
-  // ckItem.value = ''
-  // selectProductOrder.value = {
-  //   playerId: '',
-  //   productId: '',
-  //   type: typeitem.value,
-  //   piece: 0,
-  //   validation: ''
-  // }
-}
+const wrtlist = ref([
+  {
+    name: '心電監測器',
+    page: 1,
+    validation: 'ECG MONITOR'
+  },
+  {
+    name: '數位乳房攝影儀',
+    page: 2,
+    validation: 'DM'
+  },
+  {
+    name: '肺部劑量斷層掃描儀',
+    page: 3,
+    validation: 'LDCT'
+  },
+  {
+    name: '血糖智慧監測裝置',
+    page: 4,
+    validation: 'CGM'
+  },
+  {
+    name: '視網膜AI篩檢照相機',
+    page: 5,
+    validation: 'AI RIS'
+  },
+])
 const localdatapro = ref([])
-const onType = (type: string) => {
-  typeitem.value = type
+const onType = (item) => {
+  typeitem.value = item.validation
+  systemName.value = item.name
+  pageNum.value = item.page
   systemSwitch.value = false
-  const datrapro = localStorage.getItem('productList')
-  console.log(datrapro, 'datrapro');
-  if (!datrapro) {
-    return
-  }
-  localdatapro.value = JSON.parse(datrapro)
-  let list = toRaw(localdatapro.value)
-  typeLis.value = list.filter(item => item.validation[0] == typeitem.value)[0]
-  console.log(typeLis.value, 'typeLis.value');
-
-  selectProductOrder.value.productId = typeLis.value._id
 }
 
 const ckItem = ref('')
 const onItem = (item: string) => {
   ckItem.value = item
-  selectProductOrder.value.type = ckItem.value
+  selectProductOrder.value.productId = ckItem.value.id
 }
 
 const disableBet = ref(false)
 const betRoundNo = ref(1)
+const isSuccess = ref(true)
 const checkBetData = (tpite: string) => {
-  console.log('selectProductOrder', selectProductOrder.value)
-  console.log(serverTime.value.currentRoundId, 'serverTime.value.currentRoundId');
 
-  if (betRoundNo.value === serverTime.value.currentRoundId) {
-    ElNotification({
-      message: '調整進行中，請勿重複送出',
-      type: 'error',
-      showClose: false
-    })
+  // if (betRoundNo.value === serverTime.value.currentRoundId) {
+  //   ElNotification({
+  //     message: '調整進行中，請勿重複送出',
+  //     type: 'error',
+  //     showClose: false
+  //   })
+  //   return
+  // }
+  selectProductOrder.value.action = tpite
+  if (!isSuccess.value) {
     return
   }
-  selectProductOrder.value.validation = tpite
+  isSuccess.value = false
   if (!disableBet.value) {
     disableBet.value = true
     try {
-      if (selectProductOrder.value.type === '') {
+      if (selectProductOrder.value.productId === '') {
         ElNotification({
           message: `${t('請選擇材料')}`,
           type: 'error',
@@ -109,38 +118,13 @@ const checkBetData = (tpite: string) => {
         })
         return
       }
-      if (selectProductOrder.value.validation === '') {
-        ElNotification({
-          message: `${t('請選擇驗證方式')}`,
-          type: 'error',
-          showClose: false
-        })
-        return
-      }
       setTimeout(async () => {
-        selectProductOrder.value.playerId = PlayerStore?.playerInfo?.id
-        console.log('selectProductOrder', PlayerStore.playerInfo)
         console.log('selectProductOrder', selectProductOrder.value)
         selectProductOrder.value.piece =
           selectProductOrder.value.piece.toString()
-        const response = await orderStore.bet(selectProductOrder.value)
+        const response = await betProduct(selectProductOrder.value)
         if (response.success) {
-          betRoundNo.value = serverTime.value.currentRoundId
-          // ElMessageBox.alert(
-          //   `
-          //      <p style="margin:0 0 8px 0"> ${t('期別')}: ${serverTime.value.currentRoundId} </p>
-          //      <p style="margin:0 0 8px 0"> ${t('轉換技術')}: ${selectProduct.value.name} </p>
-          //      <p style="margin:0 0 8px 0"> ${t('光伏(pv)組件')}: ${selectProductOrder.value.type} </p>
-          //      <p style="margin:0 0 8px 0"> ${t('數額')}: ${selectProductOrder.value.piece} </p>
-          //      <p style="margin:0 0 8px 0"> ${t('驗證方式')}: ${selectProductOrder.value.validation} </p>
-          //    `,
-          //   `${t('成功')}`,
-          //   {
-          //     confirmButtonText: `${t('確認')}`,
-          //     center: true,
-          //     dangerouslyUseHTMLString: true
-          //   }
-          // )
+          // betRoundNo.value = serverTime.value.currentRoundId
           selectProductOrder.value.piece = ''
           ElNotification({
             title: '調整成功',
@@ -148,15 +132,18 @@ const checkBetData = (tpite: string) => {
             showClose: false
           })
         } else {
+          console.log(response, 'responsesss');
+
           // ElNotification({
           //   title: response.message,
           //   type: 'error',
           //   showClose: false
           // })
         }
-        clearBetData()
-        selectProduct.value = ''
+        isSuccess.value = true
+
         await PlayerStore.fetchInfo()
+        getInventory()
       }, 0)
     } catch (error) {
       console.error(error)
@@ -217,7 +204,7 @@ const startConnectWebSocket = async () => {
           const type2 = route.query.type;
           console.log(route.query.type, 'route.query.type');
 
-          await onType(type2)
+          // await onType(type2)
           break
         }
         default:
@@ -300,16 +287,37 @@ const handleDataInView = () => {
   })
 }
 const randomTimer = ref()
+const systemName = ref()
 await onMounted(async () => {
-  onType(route.query.type)
+  // onType(route.query.type)
+  systemName.value = route.query.name
+  pageNum.value = route.query.page
+  console.log(systemName, 'systemName');
+
   handleDataInView()
   randomTimer.value = setInterval(() => {
     handleDataInView()
     bannerIndex.value++
     if (bannerIndex.value > 8) bannerIndex.value = 0
   }, 3000)
-  await startConnectWebSocket()
+  // await startConnectWebSocket()
+  getProductList()
+  getInventory()
 })
+const productData = ref([])
+const getProductList = async () => {
+  const res = await queryProduct({ limit: 25 })
+  productData.value = res.data.result
+  console.log(productData.value, 'dsadhbsjakdhbi');
+
+}
+const inventoryList = ref([])
+const getInventory = async () => {
+  const res = await queryInventory({})
+  inventoryList.value = res.data.result
+  console.log(inventoryList.value, 'sssddddd');
+
+}
 const getRandomInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -365,11 +373,13 @@ const wrt = ref({
   '控制晶片': 'EX:STM32',
   '通訊模組': 'BLE模組',
   '電源': 'Li-Po Battery',
+
   '探測面板': 'a-Se Flat Panel',
   'X光源模組': 'X-ray',
   '高壓電源模組': 'HVG',
   '壓迫板模組': 'CP',
   '控制與影響處理版': 'IP/FPGAB',
+
   'X光探測器陣列': 'SDA',
   '旋轉機構模組': 'CT GMA',
   '多層探測晶片': 'M-S DC',
@@ -411,6 +421,20 @@ const tcolor = ref({
     color2: '#fbece5'
   },
 })
+const getQuantity = (id) => {
+  let aaa = inventoryList.value.filter(item => item.productId ==
+    id)
+  if (aaa.length > 0) {
+    return aaa[0].quantity
+  } else {
+    return 0
+  }
+}
+const pageNum = ref()
+const getProductData = () => {
+  const start = (Number(pageNum.value) - 1) * 5
+  return productData.value.slice(start, start + 5)
+}
 </script>
 
 <template>
@@ -437,8 +461,8 @@ const tcolor = ref({
                 <div class="dropdown-item" @click="navigateTo('/game/warrants')">
                   返回首頁
                 </div>
-                <div class="dropdown-item" :class="item.name" v-for="(item, index) in productList" :key="item"
-                  v-if="productList.length > 0" @click.stop="onType(item.validation[0])">
+                <div class="dropdown-item" :class="item.name" v-for="(item, index) in wrtlist" :key="item"
+                  @click.stop="onType(item)">
                   {{ item.name }}系统
                 </div>
               </div>
@@ -446,7 +470,7 @@ const tcolor = ref({
             <div class="left-box">
               <div class="top-title">
                 <span class="info-on">{{ $lang('Hello,') }} &nbsp </span>
-                <span> {{ PlayerStore.playerInfo.account }}</span>
+                <span> {{ PlayerStore?.playerInfo?.account }}</span>
               </div>
 
             </div>
@@ -461,9 +485,9 @@ const tcolor = ref({
           <div class="game-items">
             <div class="game-item-title" :style="{ background: (tcolor[typeitem || 'ECG MONITOR'].color1 || '') }">
               <h1 class="title-text">
-                {{ $lang(`${typeLis.name || '-'}`) }}
+                {{ $lang(`${systemName || '-'}`) }}
               </h1>
-              <div class="title-number">
+              <!-- <div class="title-number">
                 <div class="number-text">
                   {{ $lang('單號') }}: {{ serverTime?.currentRoundId }}
                 </div>
@@ -471,9 +495,9 @@ const tcolor = ref({
               <div class="title-quantity">
                 <div class="quantity-text">
                   {{ $lang('剩餘時間') }}:{{ serverTime?.currentRoundCountdown || '0' }}s
-                  <!-- {{ new Intl.NumberFormat('zh-TW').format(playerWallet) }} -->
+                  {{ new Intl.NumberFormat('zh-TW').format(playerWallet) }}
                 </div>
-              </div>
+              </div> -->
 
             </div>
             <div class="game-data">
@@ -493,14 +517,20 @@ const tcolor = ref({
               </div>
               <div class="game-item-content">
                 <div class="game-item" :class="ckItem === ite ? 'active' : ''" @click="onItem(ite)"
-                  v-for="(ite, index) in typeLis.type" :key="index" v-if="localdatapro.length > 0">
-                  <h1>{{ ite }}</h1>
-                  <p style="font-size: 15px;margin-top: 5px;">{{ wrt[ite] }}</p>
+                  v-for="(ite, index) in getProductData()" :key="index" v-if="productData.length > 0">
+                  <h1>{{ ite.name }}</h1>
+                  <p style="font-size: 15px;margin-top: 5px;">{{ wrt[ite.name] }}</p>
+                  <p style="font-size: 15px;margin-top: 5px;">庫存：{{ getQuantity(ite.id)
+                  }}</p>
                 </div>
               </div>
-
-              <div class="game-submit" @click="checkBetData(typeitem)">
-                <span>{{ $lang('立即送出') }}</span>
+              <div class="btnbox">
+                <div class="game-submit buy" @click="checkBetData('buy')">
+                  <span>{{ $lang('採購') }}</span>
+                </div>
+                <div class="game-submit sell" @click="checkBetData('sell')">
+                  <span>{{ $lang('租售') }}</span>
+                </div>
               </div>
             </div>
 
@@ -887,6 +917,9 @@ $background: rgba(0, 0, 0, 0.6)
         font-size: 22px
         @media (max-width: 992px)
           font-size: 20px
+  .btnbox
+    display: flex
+    gap: 30px
   .sub-box
     border-radius: 8px
     margin: 0px 0 40px
@@ -939,6 +972,8 @@ $background: rgba(0, 0, 0, 0.6)
     span
       z-index: 2
     &:hover
-      box-shadow: 0 6px 18px rgba(235, 109, 50, 0.6)
+      box-shadow: 0 6px 18px rgba(112, 112, 112, 0.6)
       transform: translateY(-2px)
+  .sell
+    background: linear-gradient(135deg, #0A3D91, #1E5BFF)
 </style>

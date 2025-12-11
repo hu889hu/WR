@@ -33,6 +33,45 @@ const wrt = ref({
     text: '近紅外攝影、自動對焦鏡頭、AI運算、螢幕顯示、數據上傳模組'
   },
 })
+
+const wrtlist = ref([
+  {
+    name: '心電監測器',
+    validation: 'ECG MONITOR',
+    img: img1,
+    page: 1,
+    text: '電極片、類比晶片、控制晶片、通訊模組、電源'
+  },
+  {
+    name: '數位乳房攝影儀',
+    validation: 'DM',
+    img: img2,
+    page: 2,
+    text: '探測面板、X光源模組、高壓電源模組、壓迫板、影響處理版'
+  },
+  {
+    name: '肺部劑量斷層掃描儀',
+    validation: 'LDCT',
+    img: img3,
+    page: 3,
+    text: 'X光探測器、旋轉機構模組、探測晶片、高速資料轉換、鉛防護'
+  },
+  {
+    name: '血糖智慧監測裝置',
+    validation: 'CGM',
+    img: img4,
+    page: 4,
+    text: '微針感測貼片、酶感測元件、傳輸晶片、控制晶片、醫療膠材'
+  },
+  {
+    name: '視網膜AI篩檢照相機',
+    validation: 'AI RIS',
+    img: img5,
+    page: 5,
+    text: '近紅外攝影、自動對焦鏡頭、AI運算、螢幕顯示、數據上傳模組'
+  },
+])
+
 // game socket
 const reconnected = ref(true)
 const closeWebSocket = async () => {
@@ -131,9 +170,9 @@ onBeforeUnmount(() => {
   closeWebSocket()
 })
 
-const onPush = (path: string) => {
-  if (path === '/') return navigateTo(path)
-  let pathStr = '/game?type=' + path
+const onPush = (item: string) => {
+  if (item.validation === '/') return navigateTo(item)
+  let pathStr = '/game?type=' + item.validation + '&name=' + item.name + '&page=' + item.page
   navigateTo(pathStr)
 }
 const scrollTop = ref(0)
@@ -166,18 +205,18 @@ const scrollTop = ref(0)
         </h3>
         <hr style="border-top: 1px solid #d7d7d7;opacity: 1;margin-bottom: 50px;">
         <div class="gameitem">
-          <div class="item" @click="onPush(item.validation)" v-for="(item, index) in productList" :key="index">
+          <div class="item" @click="onPush(item)" v-for="(item, index) in wrtlist" :key="index">
             <div class="imgbox">
-              <img :src="wrt[item.validation[0]].img" alt="">
+              <img :src="item.img" alt="">
 
             </div>
             <div class="content">
               <div class="mtext">
                 <div>{{ item.name || '-' }}</div>
-                <div style="opacity: 0.65;font-size: 14px;font-weight: 600;">{{ item.validation[0] }}</div>
+                <div style="opacity: 0.65;font-size: 14px;font-weight: 600;">{{ item.validation }}</div>
               </div>
               <div class="down">
-                {{ wrt[item.validation[0]].text }}
+                {{ item.text }}
               </div>
             </div>
           </div>
