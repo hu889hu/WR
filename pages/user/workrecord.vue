@@ -2,6 +2,7 @@
 const playerStore = usePlayerStore()
 const { t } = useI18n()
 const { getListenkey } = playerStore
+const { queryWorkOrder } = useOrderStore()
 const socket: any = ref(null)
 const socketConnected = ref(false)
 const isFirstGet = ref(false)
@@ -76,9 +77,19 @@ const startConnectWebSocket = async () => {
 
 
 onMounted(async () => {
-    await startConnectWebSocket()
+    // await startConnectWebSocket()
+    getWorkList()
 })
+const getWorkList = async () => {
+    let res = await queryWorkOrder({ limit: 30 })
+    isloading.value = true
+    if (res.data.total > 30) {
+        res = await queryWorkOrder({ limit: 150 })
+    }
+    ordertList.value = res.data.result
+    console.log(res.data.result, 'res.data.result');
 
+}
 onBeforeUnmount(() => {
     reconnected.value = false
     closeWebSocket()
@@ -130,22 +141,16 @@ const mainBalance = computed(() => {
                             <tbody>
                                 <tr v-for="(item, index) in ordertList" :key="index">
                                     <td>{{ formatDate(item.createdAt) }}</td>
-                                    <td class="content">{{ item.roundNo }}</td>
-                                    <td>{{ item.option.type }}</td>
-                                    <td>{{ item.amount }}</td>
+                                    <td class="content">{{ item.orderId }}</td>
+                                    <td>{{ item.productName }}</td>
+                                    <td>{{ item.piece }}</td>
                                     <td>
-                                        <div v-if="item.status === 0">
-                                            {{ $lang('調整中') }}
-                                        </div>
-                                        <div v-else>
-                                            <div v-if="item.profit > 0">
-                                                {{ $lang('調整完成') }}
-                                            </div>
-                                            <div v-else>{{ $lang('調整失敗') }}</div>
-                                        </div>
+                                        <div v-if="item.status === 0">{{ $lang('調整中') }}</div>
+                                        <div v-if="item.status === 1">{{ $lang('調整完成') }}</div>
+                                        <div v-if="item.status === 2">{{ $lang('調整失敗') }}</div>
                                     </td>
                                     <td>
-                                        {{ item.productName }}
+                                        {{ item.action == "buy" ? '採購' : '租售' }}
                                     </td>
                                 </tr>
                             </tbody>
