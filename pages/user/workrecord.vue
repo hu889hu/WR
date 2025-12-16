@@ -134,8 +134,8 @@ const mainBalance = computed(() => {
                                     <td>{{ $lang('單號') }}</td>
                                     <td>{{ $lang('内容') }}</td>
                                     <td>{{ $lang('數量') }}</td>
-                                    <td>{{ $lang('結果') }}</td>
                                     <td>{{ $lang('種類') }}</td>
+                                    <td>{{ $lang('結果') }}</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,12 +145,12 @@ const mainBalance = computed(() => {
                                     <td>{{ item.productName }}</td>
                                     <td>{{ item.piece }}</td>
                                     <td>
+                                        {{ item.action == "buy" ? '採購' : '租售' }}
+                                    </td>
+                                    <td>
                                         <div v-if="item.status === 0">{{ $lang('調整中') }}</div>
                                         <div v-if="item.status === 1">{{ $lang('調整完成') }}</div>
                                         <div v-if="item.status === 2">{{ $lang('調整失敗') }}</div>
-                                    </td>
-                                    <td>
-                                        {{ item.action == "buy" ? '採購' : '租售' }}
                                     </td>
                                 </tr>
                             </tbody>

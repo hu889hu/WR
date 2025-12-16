@@ -920,6 +920,9 @@ $background: rgba(0, 0, 0, 0.6)
   .btnbox
     display: flex
     gap: 30px
+    @media (max-width: 992px)
+      display: block
+      width: 100%
   .sub-box
     border-radius: 8px
     margin: 0px 0 40px
