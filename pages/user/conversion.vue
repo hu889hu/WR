@@ -43,7 +43,7 @@ const goTransfer = async () => {
   }
   if (amount.value < 10) {
     ElNotification({
-      title: '未達交易數量（最低 10 USDT）',
+      title: '未達交易數量（最低 10 USD）',
       type: 'warning',
       duration: 1000
     })
@@ -53,7 +53,7 @@ const goTransfer = async () => {
     fromWalletId: PlayerStore.playerInfo.wallet[0].id,
     toWalletId: PlayerStore.playerInfo.wallet[1].id,
     amount: JSON.stringify(amount.value),
-    memo: `用戶操作 USDT 劃轉至 TWD ,數量: ${amount.value}`
+    memo: `用戶操作 USD 劃轉至 TWD ,數量: ${amount.value}`
   })
   if (transferRes.success) {
     ElNotification({
@@ -100,15 +100,15 @@ const formatDate = (timestamp: string) => {
 <template>
   <div class="pages">
     <div class="tag">
-      貨幣轉換-USDT轉TWD
+      貨幣轉換-USD轉TWD
     </div>
     <div class="inf-bg">
       <div class="ul-contact-form-container__title">
         <div>您當前可換購數量為 <span style="color: #a34405;"> {{ new Intl.NumberFormat('zh-TW').format(playerWalletBalance)
             }}</span></div>
-        <div>可將您持有的USDT轉換為TWD</div>
+        <div>可將您持有的USD轉換為TWD</div>
         <div>（系統匯率：{{ rate }}）</div>
-        <div>最低USDT數量為10</div>
+        <div>最低USD數量為10</div>
       </div>
 
       <hr style="border-top: 1px solid #d7d7d7;margin-bottom: 50px;">
@@ -116,8 +116,8 @@ const formatDate = (timestamp: string) => {
       <div class="ul-contact-form">
         <div class="form-group">
           <div class="position-relative">
-            <label>{{ $lang('請輸入USDT數量') }}</label>
-            <input type="number" name="USDT" v-model="amount" class="form-control">
+            <label>{{ $lang('請輸入USD數量') }}</label>
+            <input type="number" name="USD" v-model="amount" class="form-control">
           </div>
         </div>
         <div @click="conversionCalculation" class="update_password update_password2">

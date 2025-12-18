@@ -261,11 +261,11 @@ const openSwiftness = ref(false)
               <ul class="submenu">
                 <li class="hover-target">
                   <span class="arrow2"> <i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/conversion')"> USDT轉TWD </a>
+                  <a @click="navigateTo('/user/conversion')"> USD轉TWD </a>
                 </li>
                 <li class="hover-target">
                   <span class="arrow2"><i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/conversiont')"> TWD轉USDT </a>
+                  <a @click="navigateTo('/user/conversiont')"> TWD轉USD </a>
                 </li>
               </ul>
             </li>
@@ -339,11 +339,11 @@ const openSwiftness = ref(false)
               <ul class="submenu">
                 <li class="hover-target">
                   <span class="arrow2"> <i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/conversion')"> USDT轉TWD </a>
+                  <a @click="navigateTo('/user/conversion')"> USD轉TWD </a>
                 </li>
                 <li class="hover-target">
                   <span class="arrow2"><i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/conversiont')"> TWD轉USDT </a>
+                  <a @click="navigateTo('/user/conversiont')"> TWD轉USD </a>
                 </li>
               </ul>
             </li>

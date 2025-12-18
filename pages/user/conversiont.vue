@@ -47,7 +47,7 @@ const goTransfer = async () => {
   }
   if (amount.value < 100) {
     ElNotification({
-      title: '未達交易數量（最低 100 USDT）',
+      title: '未達交易數量（最低 100 USD）',
       type: 'warning',
       duration: 1000
     })
@@ -57,7 +57,7 @@ const goTransfer = async () => {
     fromWalletId: PlayerStore.playerInfo.wallet[1].id,
     toWalletId: PlayerStore.playerInfo.wallet[0].id,
     amount: JSON.stringify(amount.value),
-    memo: `用戶操作 TWD 劃轉至 USDT ,數量: ${amount.value}`
+    memo: `用戶操作 TWD 劃轉至 USD ,數量: ${amount.value}`
   })
   if (transferRes.success) {
     ElNotification({
@@ -104,15 +104,15 @@ const formatDate = (timestamp: string) => {
 <template>
   <div class="pages">
     <div class="tag">
-      貨幣轉換-TWD轉USDT
+      貨幣轉換-TWD轉USD
     </div>
     <div class="inf-bg">
       <div class="ul-contact-form-container__title">
         <div>您當前可換購數量為 <span style="color: #a34405;"> {{ new Intl.NumberFormat('zh-TW').format(playerWalletBalance)
-        }}</span></div>
-        <div>可將您持有的TWD轉換為USDT</div>
-        <div>（系統匯率：{{ uRate }} TWD / 1 USDT）</div>
-        <div>最低USDT數量為100</div>
+            }}</span></div>
+        <div>可將您持有的TWD轉換為USD</div>
+        <div>（系統匯率：{{ uRate }} TWD / 1 USD）</div>
+        <div>最低USD數量為100</div>
       </div>
 
       <hr style="border-top: 1px solid #d7d7d7;margin-bottom: 50px;">
@@ -121,7 +121,7 @@ const formatDate = (timestamp: string) => {
         <div class="form-group">
           <div class="position-relative">
             <label>{{ $lang('請輸入台幣（TWD）金額') }}</label>
-            <input type="number" name="USDT" v-model="amount" class="form-control">
+            <input type="number" name="USD" v-model="amount" class="form-control">
           </div>
         </div>
         <div @click="conversionCalculation" class="update_password update_password2">
@@ -129,7 +129,7 @@ const formatDate = (timestamp: string) => {
         </div>
         <div class="form-group">
           <div class="position-relative">
-            <label>{{ $lang('USDT') }}</label>
+            <label>{{ $lang('USD') }}</label>
             <input type="number" name="TWD" v-model="toAmount" class="form-control" readonly>
           </div>
         </div>
@@ -203,7 +203,7 @@ const formatDate = (timestamp: string) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  USDT:{{ new Intl.NumberFormat('zh-TW').format(item.toAmount) }}
+                  USD:{{ new Intl.NumberFormat('zh-TW').format(item.toAmount) }}
                 </p>
               </td>
               <td>
