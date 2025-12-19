@@ -290,10 +290,10 @@ const onActive = (item) => {
       <hr style="border-top: 1px solid #d7d7d7;opacity: 1;margin-bottom: 50px;">
       <div class="btns">
         <div class="btn" :class="tabActive == '1' ? 'active' : ''" @click="onActive('1')">
-          财务申请
+          財務申請
         </div>
         <div class="btn" :class="tabActive == '2' ? 'active' : ''" @click="onActive('2')">
-          爱心公益箱
+          愛心公益箱
         </div>
       </div>
       <div v-if="playerStore.playerInfo.bankInfo !== null" class="formSection">
@@ -346,7 +346,7 @@ const onActive = (item) => {
                   new Intl.NumberFormat('zh-TW').format(
                     siteStore.siteData.minWithdrawAmount
                   )
-                    }})</span></label>
+                }})</span></label>
                 <input type="number" v-model="withdrawAmount" class="form-control">
               </div>
               <div style="font-size: 14px;color: #5178f8;font-weight: 600;margin-top: 20px;">
