@@ -20,9 +20,7 @@ const handleRedirect = (path) => {
       </li>
       <li>
         <div>
-          <a :href="siteStore.chatbox" target="_blank"
-            ><i class="fa-regular fa-envelope"></i
-          ></a>
+          <a :href="siteStore.chatbox" target="_blank"><i class="fa-regular fa-envelope"></i></a>
         </div>
       </li>
       <li>
@@ -39,18 +37,12 @@ const handleRedirect = (path) => {
       <img :src="siteStore?.siteData.logo" />
     </div>
 
-    <div
-      class="overlay"
-      :class="{
-        active: isMenuOpen
-      }"
-    ></div>
-    <div
-      class="header-menu"
-      :class="{
-        active: isMenuOpen
-      }"
-    >
+    <div class="overlay" :class="{
+      active: isMenuOpen
+    }"></div>
+    <div class="header-menu" :class="{
+      active: isMenuOpen
+    }">
       <div class="header-menu-header">
         <button type="button" @click="isMenuOpen = false">
           <i class="fa-regular fa-rectangle-xmark"></i>
@@ -59,12 +51,9 @@ const handleRedirect = (path) => {
 
       <div class="header-menu-body">
         <ul>
-          <li
-            class="header-menu-body-collapse"
-            :class="{
-              active: activeMenu === 1
-            }"
-          >
+          <li class="header-menu-body-collapse" :class="{
+            active: activeMenu === 1
+          }">
             <button type="button" @click="activeMenu = 1">
               {{ t('關於我們') }}
             </button>
@@ -81,12 +70,9 @@ const handleRedirect = (path) => {
               </li>
             </ul>
           </li>
-          <li
-            class="header-menu-body-collapse"
-            :class="{
-              active: activeMenu === 2
-            }"
-          >
+          <li class="header-menu-body-collapse" :class="{
+            active: activeMenu === 2
+          }">
             <button type="button" @click="activeMenu = 2">
               {{ t('新藥研發') }}
             </button>
@@ -122,7 +108,7 @@ const handleRedirect = (path) => {
           </li> -->
           <li>
             <button type="button" @click="handleRedirect('/user')">
-              {{ t('職員專區') }}
+              {{ t('首頁') }}
             </button>
           </li>
         </ul>

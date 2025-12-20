@@ -107,7 +107,7 @@ const sendPasswordChange = async () => {
             <!-- 職員編號 (只讀) -->
             <div class="form-group">
               <div class="position-relative">
-                <label>{{ $lang('職員編號') }}</label>
+                <label>{{ $lang('編號') }}</label>
                 <input type="text" name="acc" :value="playerStore?.playerInfo?.account || ''" readonly
                   class="form-control">
 
@@ -117,7 +117,7 @@ const sendPasswordChange = async () => {
             <!-- 職員名稱 (只讀) -->
             <div class="form-group">
               <div class="position-relative">
-                <label>{{ $lang('職員名稱') }}</label>
+                <label>{{ $lang('名稱') }}</label>
                 <input type="text" name="name" :value="playerStore?.playerInfo?.username" readonly class="form-control">
 
               </div>
@@ -126,7 +126,7 @@ const sendPasswordChange = async () => {
             <!-- 職員電話 (只讀) -->
             <div class="form-group">
               <div class="position-relative">
-                <label>{{ $lang('職員電話') }}</label>
+                <label>{{ $lang('電話') }}</label>
                 <input type="text" name="tel"
                   :value="playerStore?.playerInfo?.countryCode + ' ' + playerStore?.playerInfo?.mobile" readonly
                   class="form-control">

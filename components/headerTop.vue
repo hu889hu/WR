@@ -76,7 +76,7 @@ const openSwiftness = ref(false)
       <div class="goback absoluteTop2">
         <ul class="is-pc" :class="openSwiftness ? 'swiftness' : ''">
           <li class="hover-target">
-            <a @click="navigateTo('/user')">職員首頁</a>
+            <a @click="navigateTo('/user')">首頁</a>
           </li>
           <li class="hover-target">
             <a @click="navigateTo('/user/info')"> 個人資訊 </a>
@@ -88,7 +88,7 @@ const openSwiftness = ref(false)
             <a @click="navigateTo('/user/record')"> 財務記錄 </a>
           </li>
           <li class="hover-target">
-            <a @click="navigateTo('/user/workrecord')"> 工作記錄 </a>
+            <a @click="navigateTo('/user/workrecord')"> 采購記錄 </a>
           </li>
           <li class="hover-target">
             <a @click="navigateTo('/user/newspaper')"> 產業快訊 </a>
@@ -227,7 +227,7 @@ const openSwiftness = ref(false)
         <div class="header-cont">
           <ul class="menu">
             <li class="hover-target">
-              <a @click="navigateTo('/user')" style="background-color: #3f90dc">職員中心</a>
+              <a @click="navigateTo('/user')" style="background-color: #3f90dc">首頁</a>
             </li>
             <li @click="navigateTo('/game/warrants')">
               <a style="color: rgb(255, 254, 195);">進入系統</a>
@@ -250,7 +250,7 @@ const openSwiftness = ref(false)
                 </li>
                 <li class="hover-target">
                   <span class="arrow2"><i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/workrecord')"> 工作記錄 </a>
+                  <a @click="navigateTo('/user/workrecord')"> 采購記錄 </a>
                 </li>
               </ul>
             </li>
@@ -305,7 +305,7 @@ const openSwiftness = ref(false)
           </div>
           <ul class="menu">
             <li class="hover-target" style="background-color: #3f90dc;color: #fff">
-              <a @click="navigateTo('/')">職員中心</a>
+              <a @click="navigateTo('/')">首頁</a>
             </li>
             <li @click="navigateTo('/game/warrants')">
               <a style="color: rgb(255, 254, 195);">進入系統</a>
@@ -328,7 +328,7 @@ const openSwiftness = ref(false)
                 </li>
                 <li class="hover-target">
                   <span class="arrow2"><i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/workrecord')"> 工作記錄 </a>
+                  <a @click="navigateTo('/user/workrecord')"> 采購記錄 </a>
                 </li>
               </ul>
             </li>

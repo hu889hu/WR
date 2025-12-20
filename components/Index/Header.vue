@@ -39,11 +39,11 @@ const backTop = () => {
 const openChatBox = () => {
   const urlPattern = new RegExp(
     '^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name and extension
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-      '(\\#[-a-z\\d_]*)?$',
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name and extension
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+    '(\\#[-a-z\\d_]*)?$',
     'i'
   ) // fragment locator
   if (urlPattern.test(siteStore.chatbox)) {
@@ -59,92 +59,25 @@ const openChatBox = () => {
     </div>
     <div class="menu-toggle borblack" @click="isMenu = !isMenu">
       <svg width="17" height="17" viewBox="0 0 17 17">
-        <g
-          id="Group_9037"
-          data-name="Group 9037"
-          transform="translate(-0.208 -0.208)"
-        >
-          <circle
-            id="Ellipse_88"
-            data-name="Ellipse 88"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(0.208 0.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_93"
-            data-name="Ellipse 93"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(0.208 7.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_96"
-            data-name="Ellipse 96"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(0.208 14.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_89"
-            data-name="Ellipse 89"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(7.208 0.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_91"
-            data-name="Ellipse 91"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(7.208 7.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_94"
-            data-name="Ellipse 94"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(7.208 14.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_90"
-            data-name="Ellipse 90"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(14.208 0.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_92"
-            data-name="Ellipse 92"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(14.208 7.208)"
-            fill="#172050"
-          ></circle>
-          <circle
-            id="Ellipse_95"
-            data-name="Ellipse 95"
-            cx="1.5"
-            cy="1.5"
-            r="1.5"
-            transform="translate(14.208 14.208)"
-            fill="#172050"
-          ></circle>
+        <g id="Group_9037" data-name="Group 9037" transform="translate(-0.208 -0.208)">
+          <circle id="Ellipse_88" data-name="Ellipse 88" cx="1.5" cy="1.5" r="1.5" transform="translate(0.208 0.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_93" data-name="Ellipse 93" cx="1.5" cy="1.5" r="1.5" transform="translate(0.208 7.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_96" data-name="Ellipse 96" cx="1.5" cy="1.5" r="1.5" transform="translate(0.208 14.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_89" data-name="Ellipse 89" cx="1.5" cy="1.5" r="1.5" transform="translate(7.208 0.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_91" data-name="Ellipse 91" cx="1.5" cy="1.5" r="1.5" transform="translate(7.208 7.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_94" data-name="Ellipse 94" cx="1.5" cy="1.5" r="1.5" transform="translate(7.208 14.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_90" data-name="Ellipse 90" cx="1.5" cy="1.5" r="1.5" transform="translate(14.208 0.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_92" data-name="Ellipse 92" cx="1.5" cy="1.5" r="1.5" transform="translate(14.208 7.208)"
+            fill="#172050"></circle>
+          <circle id="Ellipse_95" data-name="Ellipse 95" cx="1.5" cy="1.5" r="1.5" transform="translate(14.208 14.208)"
+            fill="#172050"></circle>
         </g>
       </svg>
     </div>
@@ -164,29 +97,17 @@ const openChatBox = () => {
             </div>
           </div>
           <div class="muneList">
-            <div
-              class="title"
-              @click="navigateTo('/about/blurb'), (isMenu = false)"
-            >
+            <div class="title" @click="navigateTo('/about/blurb'), (isMenu = false)">
               關於我們
-              <div
-                class="clay"
-                :class="routeName == '/about' ? 'isAcitve' : ''"
-              >
+              <div class="clay" :class="routeName == '/about' ? 'isAcitve' : ''">
                 <div class="clays"></div>
               </div>
             </div>
           </div>
           <div class="muneList">
-            <div
-              class="title"
-              @click="navigateTo('/product/article'), (isMenu = false)"
-            >
+            <div class="title" @click="navigateTo('/product/article'), (isMenu = false)">
               產品介紹
-              <div
-                class="clay"
-                :class="routeName == '/product' ? 'isAcitve' : ''"
-              >
+              <div class="clay" :class="routeName == '/product' ? 'isAcitve' : ''">
                 <div class="clays"></div>
               </div>
             </div>
@@ -200,15 +121,9 @@ const openChatBox = () => {
             </div>
           </div>
           <div class="muneList">
-            <div
-              class="title"
-              @click="navigateTo('/capability'), (isMenu = false)"
-            >
+            <div class="title" @click="navigateTo('/capability'), (isMenu = false)">
               核心能力
-              <div
-                class="clay"
-                :class="routeName == '/capability' ? 'isAcitve' : ''"
-              >
+              <div class="clay" :class="routeName == '/capability' ? 'isAcitve' : ''">
                 <div class="clays"></div>
               </div>
             </div>
@@ -218,13 +133,17 @@ const openChatBox = () => {
           <div class="muneList">
             <div class="title" @click="openChatBox()">
               客服連結
-              <div class="clay"><div class="clays"></div></div>
+              <div class="clay">
+                <div class="clays"></div>
+              </div>
             </div>
           </div>
           <div class="muneList">
             <div class="title" @click="navigateTo('/user'), (isMenu = false)">
-              職員專區
-              <div class="clay"><div class="clays"></div></div>
+              首頁
+              <div class="clay">
+                <div class="clays"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -232,12 +151,8 @@ const openChatBox = () => {
     </div>
     <div class="backTop" @click="backTop">
       <svg width="25.999" height="11" viewBox="0 0 25.999 11">
-        <path
-          id="i-side-top"
-          d="M2,30,9.583,17,2,4H5.416L13,17,5.416,30Z"
-          transform="translate(-4.001 13) rotate(-90)"
-          fill="#fff"
-        ></path>
+        <path id="i-side-top" d="M2,30,9.583,17,2,4H5.416L13,17,5.416,30Z" transform="translate(-4.001 13) rotate(-90)"
+          fill="#fff"></path>
       </svg>
     </div>
     <!-- <div class="header-main">
@@ -399,8 +314,8 @@ const openChatBox = () => {
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown>
-    </div>-->
+</el-dropdown>
+</div>-->
   </div>
 </template>
 
