@@ -88,7 +88,7 @@ const openSwiftness = ref(false)
             <a @click="navigateTo('/user/record')"> 財務記錄 </a>
           </li>
           <li class="hover-target">
-            <a @click="navigateTo('/user/workrecord')"> 采購記錄 </a>
+            <a @click="navigateTo('/user/workrecord')"> 採購記錄 </a>
           </li>
           <li class="hover-target">
             <a @click="navigateTo('/user/newspaper')"> 產業快訊 </a>
@@ -250,7 +250,7 @@ const openSwiftness = ref(false)
                 </li>
                 <li class="hover-target">
                   <span class="arrow2"><i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/workrecord')"> 采購記錄 </a>
+                  <a @click="navigateTo('/user/workrecord')"> 採購記錄 </a>
                 </li>
               </ul>
             </li>
@@ -328,7 +328,7 @@ const openSwiftness = ref(false)
                 </li>
                 <li class="hover-target">
                   <span class="arrow2"><i class="fa-solid fa-caret-right fa-xs"></i></span>
-                  <a @click="navigateTo('/user/workrecord')"> 采購記錄 </a>
+                  <a @click="navigateTo('/user/workrecord')"> 採購記錄 </a>
                 </li>
               </ul>
             </li>

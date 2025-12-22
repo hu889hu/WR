@@ -117,7 +117,7 @@ const mainBalance = computed(() => {
     <div class="pages">
         <div class="ul-cart-container">
             <div class="tag">
-                工作紀錄
+                採購紀錄
             </div>
             <div class="cart-top">
                 <div class="table-responsive">
