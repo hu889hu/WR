@@ -38,6 +38,7 @@ const typeitem = ref('')
 const selectProductOrder = ref({
   productId: '',
   action: '',
+  country: '',
   piece: ''
 })
 const wrtlist = ref([
@@ -80,7 +81,12 @@ const onItem = (item: string) => {
   ckItem.value = item
   selectProductOrder.value.productId = ckItem.value.id
 }
+const cyItem = ref('')
 
+const onCountryItem = (item: string) => {
+  cyItem.value = item
+  selectProductOrder.value.country = item
+}
 const disableBet = ref(false)
 const betRoundNo = ref(1)
 const isSuccess = ref(true)
@@ -96,12 +102,15 @@ const checkBetData = (tpite: string) => {
   // }
   selectProductOrder.value.action = tpite
   if (!isSuccess.value) {
+    console.log(333);
     return
   }
   isSuccess.value = false
   if (!disableBet.value) {
     disableBet.value = true
     try {
+      isSuccess.value = true
+      disableBet.value = false
       if (selectProductOrder.value.productId === '') {
         ElNotification({
           message: `${t('請選擇材料')}`,
@@ -117,6 +126,17 @@ const checkBetData = (tpite: string) => {
           showClose: false
         })
         return
+      }
+      if (action.value !== 'buy') {
+        if (selectProductOrder.value.country === '') {
+          ElNotification({
+            message: `${t('請選擇國家')}`,
+            type: 'error',
+            showClose: false
+          })
+
+          return
+        }
       }
       setTimeout(async () => {
         console.log('selectProductOrder', selectProductOrder.value)
@@ -288,10 +308,12 @@ const handleDataInView = () => {
 }
 const randomTimer = ref()
 const systemName = ref()
+const action = ref()
 await onMounted(async () => {
   // onType(route.query.type)
   systemName.value = route.query.name
   pageNum.value = route.query.page
+  action.value = route.query.action
   console.log(systemName, 'systemName');
 
   handleDataInView()
@@ -435,6 +457,7 @@ const getProductData = () => {
   const start = (Number(pageNum.value) - 1) * 5
   return productData.value.slice(start, start + 5)
 }
+const country = ref(['美國', '日本', '德國', '英國', '中國', '韓國', '以色列', '法國', '新加坡', '泰國', '越南', '台灣'])
 </script>
 
 <template>
@@ -498,7 +521,6 @@ const getProductData = () => {
                   {{ new Intl.NumberFormat('zh-TW').format(playerWallet) }}
                 </div>
               </div> -->
-
             </div>
             <div class="game-data">
               <div v-for="(item, index) in dataList" :key="`data-${index}`" class="game-data-item"
@@ -524,19 +546,27 @@ const getProductData = () => {
                   }}</p>
                 </div>
               </div>
+              <div v-if="action != 'buy'" class="game-item-content">
+                <div class="game-item cy-item" :class="cyItem === ite ? 'activec' : ''" @click="onCountryItem(ite)"
+                  v-for="(ite, index) in country" :key="index">
+                  <h1>{{ ite }}</h1>
+                </div>
+              </div>
+              <div class="game-item-country"></div>
               <div class="btnbox">
-                <div class="game-submit buy" @click="checkBetData('buy')">
+                <div v-if="action == 'buy'" class="game-submit buy" @click="checkBetData('buy')">
                   <span>{{ $lang('採購') }}</span>
                 </div>
-                <div class="game-submit sell" @click="checkBetData('sell')">
-                  <span>{{ $lang('租售') }}</span>
+                <div v-if="action == 'sell'" class="game-submit rent" @click="checkBetData('rent')">
+                  <span>{{ $lang('租') }}</span>
+                </div>
+                <div v-if="action == 'sell'" class="game-submit sell" @click="checkBetData('sell')">
+                  <span>{{ $lang('售') }}</span>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
     <div v-if="popupSwitch" class="popup" @click.self="popupSwitch = !popupSwitch">
@@ -797,8 +827,8 @@ $background: rgba(0, 0, 0, 0.6)
   // height: 100vh
   overflow-y: auto
   .game-items
-    margin: 20px auto 0
-    max-width: 1400px
+    margin: 0 auto
+    max-width: 1150px
     animation: fadeIn 1.5s ease-in-out
     display: flex
     flex-direction: column
@@ -866,10 +896,10 @@ $background: rgba(0, 0, 0, 0.6)
       @media (max-width: 992px)
         font-size: 22px
   .game-item-content
-    margin-top: 10px
     padding: 10px 0
     display: flex
     flex-wrap: wrap
+    max-width: 900px
     gap: 20px
     justify-content: center
     
@@ -917,6 +947,10 @@ $background: rgba(0, 0, 0, 0.6)
         font-size: 22px
         @media (max-width: 992px)
           font-size: 20px
+    .cy-item
+      background-color: #5F6F73
+    .activec
+      background: linear-gradient(135deg, #ff9151, #ff6b08)
   .btnbox
     display: flex
     gap: 30px
@@ -927,7 +961,6 @@ $background: rgba(0, 0, 0, 0.6)
     border-radius: 8px
     margin: 0px 0 40px
     width: 100%
-    padding: 20px
     display: flex
     flex-direction: column
     align-items: center
@@ -971,7 +1004,7 @@ $background: rgba(0, 0, 0, 0.6)
     margin: 20px auto
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.63)
     text-align: center
-    margin-top: 70px
+    margin-top: 40px
     span
       z-index: 2
     &:hover
@@ -979,4 +1012,7 @@ $background: rgba(0, 0, 0, 0.6)
       transform: translateY(-2px)
   .sell
     background: linear-gradient(135deg, #0A3D91, #1E5BFF)
+  .rent
+    background: linear-gradient(135deg, #27AE60, #2ECC71)
+
 </style>

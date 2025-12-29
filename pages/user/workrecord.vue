@@ -133,6 +133,7 @@ const mainBalance = computed(() => {
                                     <td>{{ $lang('時間') }}</td>
                                     <td>{{ $lang('單號') }}</td>
                                     <td>{{ $lang('内容') }}</td>
+                                    <td>{{ $lang('國家') }}</td>
                                     <td>{{ $lang('數量') }}</td>
                                     <td>{{ $lang('種類') }}</td>
                                     <td>{{ $lang('結果') }}</td>
@@ -143,10 +144,11 @@ const mainBalance = computed(() => {
                                     <td>{{ formatDate(item.createdAt) }}</td>
                                     <td class="content">{{ item.orderId }}</td>
                                     <td>{{ item.productName }}</td>
+                                    <td>{{ item.country || '--' }}</td>
                                     <td>{{ item.piece }}</td>
-                                    <td>
-                                        {{ item.action == "buy" ? '採購' : '租售' }}
-                                    </td>
+                                    <td v-if="item.action == 'buy'">採購</td>
+                                    <td v-if="item.action == 'sell'">售</td>
+                                    <td v-if="item.action == 'rent'">租</td>
                                     <td>
                                         <div v-if="item.status === 0">{{ $lang('調整中') }}</div>
                                         <div v-if="item.status === 1">{{ $lang('調整完成') }}</div>

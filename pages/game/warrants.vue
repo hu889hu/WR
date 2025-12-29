@@ -170,9 +170,9 @@ onBeforeUnmount(() => {
   closeWebSocket()
 })
 
-const onPush = (item: string) => {
+const onPush = (item: string, action: string) => {
   if (item.validation === '/') return navigateTo(item)
-  let pathStr = '/game?type=' + item.validation + '&name=' + item.name + '&page=' + item.page
+  let pathStr = '/game?type=' + item.validation + '&name=' + item.name + '&page=' + item.page + '&action=' + action
   navigateTo(pathStr)
 }
 const scrollTop = ref(0)
@@ -205,10 +205,13 @@ const scrollTop = ref(0)
         </h3>
         <hr style="border-top: 1px solid #d7d7d7;opacity: 1;margin-bottom: 50px;">
         <div class="gameitem">
-          <div class="item" @click="onPush(item)" v-for="(item, index) in wrtlist" :key="index">
+          <div class="item" v-for="(item, index) in wrtlist" :key="index">
             <div class="imgbox">
               <img :src="item.img" alt="">
-
+              <div class="btnbox">
+                <div class="selectbtn" @click.stop="onPush(item, 'buy')">採購</div>
+                <div class="selectbtn sell" @click.stop="onPush(item, 'sell')">租售</div>
+              </div>
             </div>
             <div class="content">
               <div class="mtext">
@@ -275,15 +278,47 @@ const scrollTop = ref(0)
             .mtext
               transform: translateY(-100%)
               opacity: 0
+            .btnbox
+              opacity: 1 !important
           .imgbox
             height: 288px
             overflow: hidden
+            position: relative
             img
               width: 100%
               height: 100%
               object-fit: cover
               transition: all .3s
-              
+            .btnbox
+              position: absolute
+              top: 30%
+              opacity: 0
+              transition: all .3s
+              left: 50%
+              transform: translateX(-50%)
+              @media (max-width: 992px)
+                opacity: 1
+              .selectbtn
+                padding: 12px 24px
+                font-size: 23px
+                font-weight: 700
+                color: #fff
+                background: linear-gradient(135deg, #ff9151, #ff6b08)
+                border-radius: 8px
+                box-shadow: 0 4px 12px rgba(231, 153, 50, 0.4)
+                cursor: pointer
+                transition: all 0.3s ease
+                width: 300px
+                max-width: 100%
+                display: block
+                margin: 20px auto
+                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.63)
+                text-align: center
+                transform: scale(1)
+                &:hover
+                  transform: scale(1.1)
+              .sell
+                background: linear-gradient(135deg, #0A3D91, #1E5BFF)
           .content
             background-color: #3f90dc
             color: #fff
