@@ -545,7 +545,7 @@ await onMounted(() => {
                   </div>
                 </div>
                 <div class="form-input">
-                  <input type="submit" value="注冊帳戶" @click="handleRegisterClick" :class="{ disabled: !isFormValid }" />
+                  <input type="submit" value="註冊帳戶" @click="handleRegisterClick" :class="{ disabled: !isFormValid }" />
                   <input type="submit" class="submit2" value="已有帳戶" @click="navigateTo('/login')">
                 </div>
               </div>

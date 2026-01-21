@@ -224,10 +224,10 @@ await onMounted(() => {
       <div class="login-main">
         <div class="login-top">
           <!-- <h1 style="font-weight: bold;">職員專區</h1> -->
-          <h1 style="font-weight: bold;">注冊</h1>
+          <h1 style="font-weight: bold;">註冊</h1>
           <!--<img src="../static/picture/logo01.png" alt="" style="width: 200px;padding-bottom: 15px;">-->
           <!-- <h3 style="font-weight: bold;"><span
-              style="background-color: #FFF;padding: 0 10px;position: relative;z-index: 3;">注冊</span></h3> -->
+              style="background-color: #FFF;padding: 0 10px;position: relative;z-index: 3;">註冊</span></h3> -->
           <div class="form">
             <h3 style="font-weight: bold;"><span
                 style="background-color: #FFF;padding: 0 10px;position: relative;z-index: 3;">帳號</span></h3>
