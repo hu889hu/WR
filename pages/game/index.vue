@@ -542,7 +542,9 @@ const country = ref(['美國', '日本', '德國', '英國', '中國', '韓國',
                   v-for="(ite, index) in getProductData()" :key="index" v-if="productData.length > 0">
                   <h1>{{ ite.name }}</h1>
                   <p style="font-size: 15px;margin-top: 5px;">{{ wrt[ite.name] }}</p>
-                  <p style="font-size: 15px;margin-top: 5px;">庫存：{{ getQuantity(ite.id)
+                  <p style="font-size: 12px;margin-top: 5px;">庫存：{{ getQuantity(ite.id)
+                  }}</p>
+                  <p style="font-size: 12px;margin-top: 5px;">成本價：{{ ite.unitPrice
                   }}</p>
                 </div>
               </div>
