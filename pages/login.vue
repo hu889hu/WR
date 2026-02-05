@@ -76,6 +76,8 @@ const openChatBox = () => {
       <div class="login-bnr">
         <div class="overlay">
           <div class="info-form">
+            <img class="ipsenlogo" src="@/assets/icon/logo2.svg" alt="">
+
             <h4>歡迎您一同共創未來</h4>
             <h1>揭示癌症的藏身之處</h1>
             <p>我們不是只看趨勢，而是看見需求，<br>
@@ -179,6 +181,13 @@ const openChatBox = () => {
         color: #fff
         margin-top: 15px
         text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562)
+        .ipsenlogo
+          margin: 0 auto
+          width: 350px
+          margin-bottom: 30px
+          @media (max-width: 768px)
+            width: 200px
+            margin-bottom: 15px
         h1
           color: #fff
         p
@@ -218,6 +227,7 @@ const openChatBox = () => {
   .login-top
     padding: 45px 0px
     position: relative
+    
 
   h1
     font-size: 48px

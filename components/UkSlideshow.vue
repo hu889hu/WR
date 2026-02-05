@@ -7,6 +7,7 @@
         <img :src="item.img" alt="" uk-cover />
         <div class="slide-cont">
           <div class="cont-box">
+            <img class="ipsenlogo" src="@/assets/icon/logo2.svg" alt="">
             <h5>
               <span v-html="item.toptitle"></span>
             </h5>
@@ -179,6 +180,7 @@ watch(() => props.ratio, initSlideshow)
       padding: 20px
       margin: 0 auto
       text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562)
+      position: relative
       @media (max-width: 768px)
         h1
           font-size: 36px
@@ -202,6 +204,13 @@ watch(() => props.ratio, initSlideshow)
           transition-delay: .3s
         &:nth-child(4)
           transition-delay: .2s
+      .ipsenlogo
+        // position: absolute
+        // right: 100px
+        width: 350px
+        margin-bottom: 20px
+        @media (max-width: 768px)
+          width: 200px
     h1
       font-size: 60px
       color: #fff
